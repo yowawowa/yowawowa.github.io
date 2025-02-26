@@ -1,1 +1,1 @@
-someday i get to frintend
+someday i'll learn frontend
