@@ -78,3 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
       camera.updateProjectionMatrix();
     });
   });
+
+const audioPlayer = document.getElementById('audioPlayer');
+audioPlayer.volume = 0.07;
