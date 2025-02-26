@@ -13,43 +13,59 @@ copyBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    // 1. Создаем сцену, камеру и рендерер
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    const renderer = new THREE.WebGLRenderer({ alpha: true }); // Прозрачный фон
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.prepend(renderer.domElement);
+    document.body.appendChild(renderer.domElement);
 
-    // 1. Создаем ствол (цилиндр)
-    const trunkGeometry = new THREE.CylinderGeometry(0.5, 0.5, 3, 16);
-    const trunkMaterial = new THREE.MeshBasicMaterial({ color: 0x8B5A2B, wireframe: true });
-    const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
-    trunk.position.y = -1; // Поднимаем чуть вверх
+    // 2. Создаем конус
+    // const geometry = new THREE.ConeGeometry(2, 4, 32);
+    // const geometry = new THREE.IcosahedronGeometry(2); // Икосаэдр
+    // const geometry = new THREE.TorusGeometry(2, 0.6, 16, 100); // Тор (бублик)
+    const geometry = new THREE.OctahedronGeometry(2); // Октаэдр
+    
+    // const geometry = new THREE.IcosahedronGeometry(2, 2);
 
-    // 2. Создаем крону (сфера)
-    const crownGeometry = new THREE.SphereGeometry(1.5, 16, 16);
-    const crownMaterial = new THREE.MeshBasicMaterial({ color: 0x00AA00, wireframe: true });
-    const crown = new THREE.Mesh(crownGeometry, crownMaterial);
-    crown.position.y = 1.5; // Размещаем над стволом
+    // упоротое ломание
+    // const positions = geometry.attributes.position.array;
+    // for (let i = 0; i < positions.length; i++) {
+    //     positions[i] += (Math.random() - 0.5) * 1.5;
+    // }
+    // geometry.attributes.position.needsUpdate = true;
 
-    // 3. Объединяем в группу
-    const tree = new THREE.Group();
-    tree.add(trunk);
-    tree.add(crown);
-    scene.add(tree);
+    // материалы
+    const material = new THREE.MeshBasicMaterial({
+      color: 0xff5733,
+      wireframe: true,
+    }); // Оранжевый каркас
+    const cone = new THREE.Mesh(geometry, material);
+    scene.add(cone);
 
+    // 3. Позиционируем камеру
     camera.position.z = 6;
 
+    // 4. Анимация
     function animate() {
-        requestAnimationFrame(animate);
-        tree.rotation.y += 0.01; // Вращение
-        renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+      cone.rotation.x += 0.01; // Вращение по X
+      cone.rotation.y += 0.02; // Вращение по Y
+      cone.rotation.z += 0.015; // Вращение по Z
+      renderer.render(scene, camera);
     }
 
     animate();
 
+    // 5. Обновляем размеры при изменении окна
     window.addEventListener("resize", () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
     });
-});
+  });
