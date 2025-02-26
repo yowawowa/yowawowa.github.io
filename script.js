@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // const geometry = new THREE.ConeGeometry(2, 4, 32);
     // const geometry = new THREE.IcosahedronGeometry(2); // Икосаэдр
     // const geometry = new THREE.TorusGeometry(2, 0.6, 16, 100); // Тор (бублик)
-    const geometry = new THREE.OctahedronGeometry(2); // Октаэдр
+    const geometry = new THREE.OctahedronGeometry(5); // Октаэдр
     
     // const geometry = new THREE.IcosahedronGeometry(2, 2);
 
