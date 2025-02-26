@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 2. Создаем конус
     // const geometry = new THREE.ConeGeometry(2, 4, 32);
     // const geometry = new THREE.IcosahedronGeometry(2); // Икосаэдр
-    // const geometry = new THREE.TorusGeometry(2, 0.6, 16, 100); // Тор (бублик)
-    const geometry = new THREE.OctahedronGeometry(5); // Октаэдр
+    // const geometry = new THREE.TorusGeometry(2, 0.6, 16, 100); 
+    const geometry = new THREE.OctahedronGeometry(7); // Октаэдр
     
     // const geometry = new THREE.IcosahedronGeometry(2, 2);
 
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
       color: 0xff5733,
       wireframe: true,
     }); // Оранжевый каркас
-    const cone = new THREE.Mesh(geometry, material);
-    scene.add(cone);
+    const figure = new THREE.Mesh(geometry, material);
+    scene.add(figure);
 
     // 3. Позиционируем камеру
     camera.position.z = 6;
@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // 4. Анимация
     function animate() {
       requestAnimationFrame(animate);
-      cone.rotation.x += 0.01; // Вращение по X
-      cone.rotation.y += 0.02; // Вращение по Y
-      cone.rotation.z += 0.015; // Вращение по Z
+      figure.rotation.x += 0.01; // Вращение по X
+      figure.rotation.y += 0.02; // Вращение по Y
+      figure.rotation.z += 0.015; // Вращение по Z
       renderer.render(scene, camera);
     }
 
