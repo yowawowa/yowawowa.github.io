@@ -55,6 +55,7 @@ a {
   .retro-button:hover {
     background-color: #000;
     color: #ff00ff;
+    color: #12c6bd;
   }
   
   .retro-button:active {
