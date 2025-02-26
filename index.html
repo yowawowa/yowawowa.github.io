@@ -15,6 +15,7 @@
       h1 {
         font-size: 50px;
         color: #ff00ff;
+        animation: pulse 2s infinite;
       }
 
       a {
@@ -34,22 +35,102 @@
         border: 3px solid #ff00ff;
         font-family: "Press Start 2P", monospace;
         cursor: pointer;
+        margin-bottom: 5px;
+        transition: transform 0.1s, box-shadow 0.1s;
       }
 
       .retro-button:hover {
         background-color: #000;
         color: #ff00ff;
       }
+
+      .retro-button:active {
+        transform: scale(0.9);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        background-color: #ccc;
+        color: #666;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          color: #6b6a6a;
+        }
+        50% {
+          transform: scale(1.1);
+          color: #ff00ff;
+        }
+        100% {
+          transform: scale(1);
+          color: #6b6a6a;
+        }
+      }
+      .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #666;
+        display: none;
+      }
+
+      .popup.show {
+        display: block;
+        animation: fadeIn 0.5s;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body>
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
-      <h1>there is no medic guide here</h1>
-      <h2>you are not getting my knowlege</h2>
-      <div style="display: flex; flex-direction: column; align-items: center;">
-      <a href="https://drive.google.com/drive/folders/1Yj7fsRZfRTIR9lRXjheuSnlPTQp_bW1O?usp=sharing" class="retro-button">cheburnet</a>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      "
+    >
+      <h1>time 2 hack</h1>
+      <h2>disaster! disaster! here comes the morning after!</h2>
+      <div id="popup" class="popup">Copied!</div>
+      <div style="display: flex; flex-direction: column; align-items: center">
+        <a
+          href="https://drive.google.com/drive/folders/1Yj7fsRZfRTIR9lRXjheuSnlPTQp_bW1O?usp=sharing"
+          class="retro-button"
+          >cheburnet</a
+        >
+        <button id="copy-btn" class="retro-button">windows -> activate</button>
       </div>
     </div>
-    </div>
+    <script>
+      const copyBtn = document.getElementById("copy-btn");
+      const popup = document.getElementById("popup");
+
+      copyBtn.addEventListener("click", () => {
+        const textToCopy = "irm https://get.activated.win | iex"; // replace with the text you want to copy
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          console.log("Text copied to clipboard");
+          popup.classList.add("show");
+          setTimeout(() => {
+            popup.classList.remove("show");
+          }, 2000);
+        });
+      });
+    </script>
   </body>
 </html>
