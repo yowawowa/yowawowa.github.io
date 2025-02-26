@@ -81,3 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const audioPlayer = document.getElementById('audioPlayer');
 audioPlayer.volume = 0.07;
+document.addEventListener("DOMContentLoaded", () => {
+  // Получаем элементы
+  const timeToHack = document.getElementById('timeToHack');
+  const audioPlayer = document.getElementById('audioPlayer');
+
+  // Добавляем обработчик события на клик
+  timeToHack.addEventListener('click', () => {
+    // Воспроизводим аудио
+    audioPlayer.play();
+  });
+});
