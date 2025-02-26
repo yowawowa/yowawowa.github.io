@@ -10,15 +10,18 @@ body {
     color: #ff00ff;
     animation: pulse 2s infinite;
   }
-  
-  a {
-    color: #00ffff;
-    text-decoration: none;
-    font-size: 18px;
+  h2 {
+    color: #00ff00;
   }
   
-  a:hover {
-    color: #ff0000;
+  .secret-link {
+    color: #00ff00;
+    text-decoration: none;
+
+  }
+  
+  .secret-link:hover {
+    color: #00ff00dc;
   }
   
   .retro-button {
